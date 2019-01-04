@@ -6,7 +6,7 @@ def application(environment, start_response):
 
     start_response(
         '200 OK',  # Status
-        [('Content-type', 'text/plain'), ('Content-Length', '2')]  # Headers
+        [('Content-type', 'text/plain')]  # Headers
     )
-    body = [bytes(i + '\n', 'ascii') for i in environ['QUERY_STRING'].split('&')]
+    body = [bytes(i + '\n', 'ascii') for i in environment['QUERY_STRING'].split('&')]
     return body
