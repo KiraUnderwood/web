@@ -1,6 +1,3 @@
-bind = "0.0.0.0:8080"
-workers = 2048
-
 def application(environment, start_response):
     """
     The main WSGI Application. Doesn't really do anything
