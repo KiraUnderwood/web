@@ -16,6 +16,13 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name="q")
+    objects = QuestionManager() 
+    
+class QuestionManager(models.Manager):                                          
+        def new():                                                              
+                pass                                                            
+        def popular():                                                          
+                pass 
 
     def __str__(self):
         return self.title
