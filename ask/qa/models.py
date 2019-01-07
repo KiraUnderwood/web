@@ -9,6 +9,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class QuestionManager(models.Manager):                                          
+        def new():                                                              
+                pass                                                            
+        def popular():                                                          
+                pass 
+
+
 class Question(models.Model):
     title = models.CharField(default="", max_length=1024)
     text = models.TextField(default="")
@@ -18,12 +25,7 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name="q")
     objects = QuestionManager() 
     
-class QuestionManager(models.Manager):                                          
-        def new():                                                              
-                pass                                                            
-        def popular():                                                          
-                pass 
-
+    
 def __str__(self):
         return self.title
 
