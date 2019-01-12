@@ -25,11 +25,10 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name="q")
     objects = QuestionManager() 
     
-    
-def __str__(self):
+    def __str__(self):
         return self.title
 
-def get_url(self):
+    def get_url(self):
         return "/question/{}/".format(self.id)
 
 
@@ -39,5 +38,5 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
-def __str__(self):
-        return self.text
+    def __str__(self):
+         return self.text
