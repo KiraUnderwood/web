@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^$', most_recent_q),
     url(r'^login/', include('qa.urls')),
     url(r'^signup/', include('qa.urls')),
-    url(r'^question/(?P<num>\d+)/$', one_question),
+    url(r'^question/',include('qa.urls')),
     url(r'^ask/', include('qa.urls')),
     url(r'^popular/', most_popular_q),
 
