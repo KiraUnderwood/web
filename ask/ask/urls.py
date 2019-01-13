@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 
-from qa.views import most_recent_q, most_popular_q, one_question
+from qa.views import recent, most_popular_q, one_question
 
 """urlpatterns = [
     url(r'^(?P<num>\d+)/$', question),

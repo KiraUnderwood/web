@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from qa.views import most_popular_q
+from qa.views import one_question
 
 
 urlpatterns = [
