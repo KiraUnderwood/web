@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from . import views
+from qa.views import most_popular_q
 
 
 urlpatterns = [
-  url(r'^$', views.test, name='testing'),
+  url(r'^$(?P<num>\d+/$)', most_popular_q),
 ]
