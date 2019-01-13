@@ -15,23 +15,25 @@ from qa.models import Question, Answer
 
 
 
-def most_recent_q(request):
+def recent(request):
     try:
         page = int(request.GET.get("page"))
     except ValueError:
         page = 1
     except TypeError:
         page = 1
-    all_questions = Question.objects.all()
-    all_questions = all_questions.order_by('-id')
-    limit = request.GET.get('limit', 10)
-    page = request.GET.get('page', 1)
-    paginator = Paginator(all_questions, limit)
+    Allquestions = Question.objects.all().order_by('-id')
+    ##all_questions = all_questions.order_by('-id')
+    ##limit = request.GET.get('limit', 10)
+    ##page = request.GET.get('page', 1)
+    paginator = Paginator(Allquestions, 10)
     #paginator.baseurl = '/blog/all_posts/?page='
     page = paginator.page(page)  # Page
     return render(request, 'pages.html', {
+    'title': 'Latest',
     'posts': page.object_list,
-    'paginator': paginator, 'page': page,
+    'paginator': paginator,
+    'page': page,
 })
 
 def most_popular_q(request):
