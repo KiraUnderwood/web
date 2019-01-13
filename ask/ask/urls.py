@@ -25,7 +25,7 @@ from qa.views import most_recent_q, most_popular_q, one_question
 """
 
 urlpatterns = [
-    url(r'^$', most_recent_q),
+    url(r'^$', recent),
     url(r'^login/', include('qa.urls')),
     url(r'^signup/', include('qa.urls')),
     url(r'^question/',include('qa.urls')),
