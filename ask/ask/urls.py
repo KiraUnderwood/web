@@ -17,13 +17,20 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 
+from qa.views import most_recent_q, most_popular_q, one_question
+
+"""urlpatterns = [
+    url(r'^(?P<num>\d+)/$', question),
+]
+"""
+
 urlpatterns = [
-    url(r'^$', include('qa.urls')),
+    url(r'^$', most_recent_q),
     url(r'^login/', include('qa.urls')),
     url(r'^signup/', include('qa.urls')),
-     url(r'^question/[0-9]+/', include('qa.urls')),
-     url(r'^ask/', include('qa.urls')),
-      url(r'^popular/', include('qa.urls')),
+    url(r'^question/(?P<num>\d+)/$', one_question),
+    url(r'^ask/', include('qa.urls')),
+    url(r'^popular/', most_popular_q),
 
   
  
