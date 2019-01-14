@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }} Allquestions</title>
+    <title>{{ title }} questions</title>
 </head>
 <body>
- <h1>{{ title }} Allquestions</h1>
+ <h1>{{ title }} questions</h1>
     {% for question in Allquestions %}
-        <p><a href="{{ question.get_url }}">{{ question }}, {{ question.author_id }}</a></p>
+        <p><a href="{{ question.get_url }}">{{ question.title }}</a></p>
     {% endfor %}
-    <div>User: {{ user }}</div>
-    <div>Session: {{ session }}</div>
+    
 
 </body>
 </html>
