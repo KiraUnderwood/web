@@ -10,8 +10,8 @@
     <div>{{ question.text}}, {{ question.author }}</div>
     <hr>
     <ul>
-    {% for answer in answer.objects.all()%}
-        <li>{{ answers.text }}, {{ answers.author }}</li>
+    {% for answer in answers%}
+        <li>{{ answer.text }}, {{ answer.author }}</li>
     {% endfor %}
     </ul>
     <hr>
