@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }} all_questions</title>
+    <title>{{ title }} Allquestions</title>
 </head>
 <body>
- <h1>{{ title }} all_questions</h1>
-    {% for question in all_questions %}
+ <h1>{{ title }} Allquestions</h1>
+    {% for question in Allquestions %}
         <p><a href="{{ question.get_url }}">{{ question }}, {{ question.author_id }}</a></p>
     {% endfor %}
     <div>User: {{ user }}</div>
