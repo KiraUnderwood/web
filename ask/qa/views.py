@@ -64,7 +64,7 @@ def popular(request):
 })
 
 
-def question(request, num):
+def question(request, num,):
     try:
         question = Question.objects.get(id=num)
     except question.DoesNotExist:
