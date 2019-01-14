@@ -77,7 +77,7 @@ def Seequestion(request, num,):
 
     return render(request, 'one_question.html', {
     'question': question,
-    'answers': answer.all(),
+    'answers': answer,
     'user': request.user,
     'session': request.session, 
 
