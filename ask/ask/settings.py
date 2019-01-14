@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'ask.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+'''
 if os.name == "nt" or True:
      DATABASES = {
            'default': {
@@ -82,7 +82,8 @@ if os.name == "nt" or True:
                       }
                   }
 else:
-     DATABASES = {
+'''
+DATABASES = {
             'default': {
                'ENGINE': 'django.db.backends.mysql',
                'NAME': 'kira',
