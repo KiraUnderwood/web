@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 
-from qa.views import recent, most_popular_q, one_question
+from qa.views import recent, popular, question
 
 """urlpatterns = [
     url(r'^(?P<num>\d+)/$', question),
@@ -28,9 +28,9 @@ urlpatterns = [
     url(r'^$', recent),
     url(r'^login/', include('qa.urls')),
     url(r'^signup/', include('qa.urls')),
-    url(r'^question/',include('qa.urls')),
+    url(r'^question/', include('qa.urls')),
     url(r'^ask/', include('qa.urls')),
-    url(r'^popular/', most_popular_q),
+    url(r'^popular/', popular),
 
   
  
