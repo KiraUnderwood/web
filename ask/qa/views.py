@@ -22,7 +22,7 @@ def recent(request):
         page = 1
     except TypeError:
         page = 1
-    Allquestions = Question.objects.all().order_by('-pk')
+    Allquestions = Question.objects.all().order_by('-id')
     ##all_questions = all_questions.order_by('-id')
     ##limit = request.GET.get('limit', 10)
     ##page = request.GET.get('page', 1)
