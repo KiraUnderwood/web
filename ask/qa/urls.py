@@ -2,7 +2,7 @@ from django.conf.urls import url
 from qa.views import Seequestion
 
 urlpatterns = [
-  url(r'^$(?P<num>\d+/)$', Seequestion),
+  url(r'^$(?P<num>\d+)/$', Seequestion),
 ]
 '''
 urlpatterns = patterns('',
