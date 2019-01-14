@@ -3,20 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ question }}</title>
+    <title>{{ question.title }}</title>
 </head>
 <body>
-    <h1>{{ question }}</h1>
-    <div>{{ question.text }}, {{ question.author }}</div>
+    <h1>{{ question.title }}</h1>
+    <div>{{ question.text}}, {{ question.author }}</div>
     <hr>
     <ul>
     {% for answer in answer.objects.all()%}
-        <li>{{ answer.text }}, {{ answer.author }}</li>
+        <li>{{ answers.text }}, {{ answers.author }}</li>
     {% endfor %}
     </ul>
     <hr>
-    <div>User: {{ user }}</div>
-    <div>Session: {{ session }}</div>
-    <div><a href="/">Return to main page</a></div>
+    
 </body>
 </html>
