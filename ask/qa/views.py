@@ -76,8 +76,7 @@ def question(request, num):
         answer = None
 
     return render(request, 'one_question.html', {
-    'question': question.title,
-    'question_body': question.text,
+    'question': question,
     'answers': answer.all(),
     'user': request.user,
     'session': request.session, 
