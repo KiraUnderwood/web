@@ -1,9 +1,8 @@
 from django.conf.urls import url
-##from qa.views import question
-'''
+from qa.views import Seequestion
 
 urlpatterns = [
-  url(r'^$(?P<num>)\d+/$', question),
+  url(r'^$(?P<num>\d+/)$', Seequestion),
 ]
 '''
 urlpatterns = patterns('',
@@ -14,3 +13,4 @@ urlpatterns = patterns('',
     url(r'^', include('qa.urls')),
     #url(r'^admin/', include(admin.site.urls)),
 )
+'''
