@@ -70,15 +70,25 @@ def Seequestion(request, num,):
         question = Question.objects.get(id=num)
     except question.DoesNotExist:
         raise Http404
-
+'''
     try:
         answer = Answer.objects.filter(question__id=num)
     except answer.DoesNotExist:
         answer = None
-
+'''
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            ##form._user = request.user
+            answ = form.save()
+            url = question.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AnswerForm(initial={'question': question.id})
+              
     return render(request, 'one_question.html', {
     'question': question,
-    'answers': answer,
+    'form': form,
     'user': request.user,
     'session': request.session, 
 
