@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login
 
 from qa.models import Question, Answer
+from qa.forms import AskForm, AnswerForm
 
 
 
@@ -82,3 +83,15 @@ def Seequestion(request, num,):
     'session': request.session, 
 
 })
+
+
+def ask_me(request):
+    if request.method == "POST":
+        form = AskForm(request.POST)
+        if form.is_valid():
+            q = form.save()
+            url = q.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AskForm()
+    return render(request, 'post_question.html', {'form':form})
