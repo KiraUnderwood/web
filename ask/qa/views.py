@@ -1,19 +1,17 @@
 """from django.shortcuts import render
 from django.http import HttpResponse
-
 def test(request, *args, **kwargs):
        return HttpResponse('OK')
 """
 # Create your views here.
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, Http404
-from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import render
 
-from qa.models import Question, Answer
 from qa.forms import AskForm, AnswerForm
-
+from qa.models import Question, Answer
 
 
 def recent(request):
@@ -28,17 +26,16 @@ def recent(request):
     ##limit = request.GET.get('limit', 10)
     ##page = request.GET.get('page', 1)
     paginator = Paginator(Allquestions, 10)
-    #paginator.baseurl = '/blog/all_posts/?page='
+    # paginator.baseurl = '/blog/all_posts/?page='
     page = paginator.page(page)  # Page
     return render(request, 'pages.html', {
-    'title': 'Latest',
-    'paginator': paginator,
-    'posts': page.object_list,
-    'page': page,
-    'user': request.user,
-    'session': request.session,
-})
-
+        'title': 'Latest',
+        'paginator': paginator,
+        'posts': page.object_list,
+        'page': page,
+        'user': request.user,
+        'session': request.session,
+    })
 
 
 def popular(request):
@@ -53,46 +50,48 @@ def popular(request):
     ##limit = request.GET.get('limit', 10)
     ##page = request.GET.get('page', 1)
     paginator = Paginator(Allquestions, 10)
-    #paginator.baseurl = '/blog/all_posts/?page='
+    # paginator.baseurl = '/blog/all_posts/?page='
     page = paginator.page(page)  # Page
     return render(request, 'pages.html', {
-    'title': 'Popular',
-    'paginator': paginator,
-    'posts': page.object_list,
-    'page': page,
-    'user': request.user,
-    'session': request.session,
-})
+        'title': 'Popular',
+        'paginator': paginator,
+        'posts': page.object_list,
+        'page': page,
+        'user': request.user,
+        'session': request.session,
+    })
 
 
-def Seequestion(request, num,):
+def Seequestion(request, num, ):
     try:
         question = Question.objects.get(id=num)
     except question.DoesNotExist:
         raise Http404
+    
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+           answ = form.save()
+           url = question.get_url()
+           return HttpResponseRedirect(url)
+    else:
+        form = AnswerForm(initial={'question': question.id})
+
+    return render(request, 'one_question.html', {
+        'question': question,
+        'form': form,
+        'user': request.user,
+        'session': request.session,
+
+    })
+
 '''
     try:
         answer = Answer.objects.filter(question__id=num)
     except answer.DoesNotExist:
         answer = None
 '''
-    if request.method == "POST":
-        form = AnswerForm(request.POST)
-        if form.is_valid():
-            ##form._user = request.user
-            answ = form.save()
-            url = question.get_url()
-            return HttpResponseRedirect(url)
-    else:
-        form = AnswerForm(initial={'question': question.id})
-              
-    return render(request, 'one_question.html', {
-    'question': question,
-    'form': form,
-    'user': request.user,
-    'session': request.session, 
 
-})
 
 
 def ask_me(request):
@@ -104,4 +103,4 @@ def ask_me(request):
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
-    return render(request, 'post_question.html', {'form':form})
+    return render(request, 'post_question.html', {'form': form})
