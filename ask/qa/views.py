@@ -98,12 +98,14 @@ def ask_me(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
+            form._user = request.user
             q = form.save()
             url = q.get_url()
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
-    return render(request, 'post_question.html', {'form': form})
+    return render(request, 'post_question.html', {'form': form, 'user': request.user,
+                                        'session': request.session,})
 
 
 def login_view(request):
