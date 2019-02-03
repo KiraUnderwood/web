@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 
 from qa.forms import AskForm, AnswerForm
-from qa.models import Question, Answer
+from qa.models import Question, Answer, sign_me, log_me
 
 
 def recent(request):
@@ -104,3 +104,43 @@ def ask_me(request):
     else:
         form = AskForm()
     return render(request, 'post_question.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = log_me(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            print(username, password)
+            user = authenticate(username=username, password=password)
+            print(type(user))
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = log_me()
+    return render(request, 'login.html', {'form': form,
+                                          'user': request.user,
+                                          'session': request.session, })
+
+
+def signup_view(request):
+    if request.method == "POST":
+        form = sign_me(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data["username"]
+            password = form.raw_password
+            user = authenticate(username=username, password=password)
+            print(type(user))
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = sign_me()
+    return render(request, 'signup.html', {'form': form,
+                                           'user': request.user,
+                                           'session': request.session, })
