@@ -10,8 +10,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 
-from qa.forms import AskForm, AnswerForm
-from qa.models import Question, Answer, sign_me, log_me
+from qa.forms import AskForm, AnswerForm, sign_me, log_me
+from qa.models import Question, Answer
 
 
 def recent(request):
